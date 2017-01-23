@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".splash" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".splash2"></activity>
+        <activity android:name=".LoginActivity" ></activity>
+        <activity android:name=".SignupActivity"></activity>
     </application>
 
 </manifest>

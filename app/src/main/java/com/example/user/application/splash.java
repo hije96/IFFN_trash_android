@@ -17,7 +17,11 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
                 finish(); //Activity 를 종료하는 메소드를 넣어주세요 !
+
             }
         }, 3000);
+
+   //     Intent intent = new Intent(this, LoginActivity.class);
+  //      startActivity(intent);
     }
 }

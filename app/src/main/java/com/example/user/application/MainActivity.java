@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.sql.SQLException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,21 +23,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
-    Button button5;
-    Button button6;
+    Button btn_flaovr_1;
+    Button btn_flaovr_2;
+    Button btn_flaovr_3;
+    Button btn_flaovr_4;
+    Button btn_start;
+    Button btn_reset;
     //ApiService apiService;
     Retrofit retrofit;
     Context context;
-    //myDB
-   // SQLiteDatabase db;
+    FlavorDB_Adapter db;
+
 
 
     int i=0;
-    int x = 0, y = 0, z = 0, l = 0;
+    int flavor_1 = 0, flavor_2 = 0, flavor_3 = 0, flavor_4 = 0;
+    int idx=0;
 
 
     @Override
@@ -44,48 +47,54 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         context = this;
-        button1 = (Button) findViewById(R.id.button);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
+        btn_flaovr_1 = (Button) findViewById(R.id.button);
+        btn_flaovr_2 = (Button) findViewById(R.id.button2);
+        btn_flaovr_3 = (Button) findViewById(R.id.button3);
+        btn_flaovr_4 = (Button) findViewById(R.id.button4);
+        btn_start = (Button) findViewById(R.id.button5);
+        btn_reset = (Button) findViewById(R.id.button6);
 
+        db = new FlavorDB_Adapter(this);
+        try {
+            db.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        Intent intent = new Intent(this, splash.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        btn_flaovr_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button1.setText(String.valueOf(++x));
+                btn_flaovr_1.setText(String.valueOf(++flavor_1));
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
+        btn_flaovr_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                button2.setText(String.valueOf(++y));
+                btn_flaovr_2.setText(String.valueOf(++flavor_2));
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
+        btn_flaovr_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                button3.setText(String.valueOf(++z));
+                btn_flaovr_3.setText(String.valueOf(++flavor_3));
             }
         });
-        button4.setOnClickListener(new View.OnClickListener() {
+        btn_flaovr_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                button4.setText(String.valueOf(++l));
+                btn_flaovr_4.setText(String.valueOf(++flavor_4));
             }
         });
-        button5.setOnClickListener(new View.OnClickListener() {
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (x == 0 && y == 0 && z == 0 && l == 0) {
+                if (flavor_1 == 0 && flavor_2 == 0 && flavor_3 == 0 && flavor_4 == 0) {
                     Toast.makeText(getApplicationContext(), "향이 선택되어야 합니다.", Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -100,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
                                     .addConverterFactory(GsonConverterFactory.create()).build();
                             ApiService apiService = retrofit.create(ApiService.class);
                             //  Call<ResponseJson> comment = apiService.getComment(x);
-                            final DataModel datamodel = new DataModel(x,y,z,l);
+                            final DataModel datamodel = new DataModel(idx,flavor_1,flavor_2,flavor_3,flavor_4);
+                            db.insert(idx,flavor_1,flavor_2,flavor_3,flavor_4);
 
                             Call<ResponseJson> call = apiService.getComment(datamodel);
 
@@ -111,16 +121,16 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d("Response", response.body().toString());
                                     ResponseJson responseJson= response.body();
 
-                                    Log.v("ResponseJson",""+responseJson.getResponse_x()+responseJson
-                                            .getResponse_y()+responseJson.getResponse_z()+responseJson.getResponse_l());
+                                    Log.v("ResponseJson", "" + responseJson.getResponse_flavor_1() + responseJson
+                                            .getResponse_flavor_2() + responseJson.getResponse_flavor_3() + responseJson.getResponse_flavor_4());
 
                                     Log.i("Response", response.toString());
                                     Toast.makeText(getApplicationContext(), "통신 성공", Toast.LENGTH_SHORT).show();
 
-                                    button1.setText(String.valueOf(x = 0));
-                                    button2.setText(String.valueOf(y = 0));
-                                    button3.setText(String.valueOf(z = 0));
-                                    button4.setText(String.valueOf(l = 0));
+                                    btn_flaovr_1.setText(String.valueOf(flavor_1 = 0));
+                                    btn_flaovr_2.setText(String.valueOf(flavor_2 = 0));
+                                    btn_flaovr_3.setText(String.valueOf(flavor_3 = 0));
+                                    btn_flaovr_4.setText(String.valueOf(flavor_4 = 0));
                                 }
 
                                 @Override
@@ -156,16 +166,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-   
 
-        button6.setOnClickListener(new View.OnClickListener() {
+
+        btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                button1.setText(String.valueOf(x = 0));
-                button2.setText(String.valueOf(y = 0));
-                button3.setText(String.valueOf(z = 0));
-                button4.setText(String.valueOf(l = 0));
+                btn_flaovr_1.setText(String.valueOf(flavor_1 = 0));
+                btn_flaovr_2.setText(String.valueOf(flavor_2 = 0));
+                btn_flaovr_3.setText(String.valueOf(flavor_3 = 0));
+                btn_flaovr_4.setText(String.valueOf(flavor_4 = 0));
 
             }
         });

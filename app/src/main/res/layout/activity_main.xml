@@ -72,7 +72,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="향1"
+        android:text="flavor1"
         android:id="@+id/textView"
         android:textSize="30dp"
         android:layout_below="@+id/button2"
@@ -81,7 +81,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="향2"
+        android:text="flavor2"
         android:textSize="30dp"
         android:id="@+id/textView2"
         android:layout_below="@+id/button2"
@@ -90,7 +90,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="향3"
+        android:text="flavor3"
         android:textSize="30dp"
         android:id="@+id/textView3"
         android:layout_below="@+id/button3"
@@ -99,7 +99,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="향4"
+        android:text="flavor4"
         android:textSize="30dp"
         android:id="@+id/textView4"
         android:layout_below="@+id/button4"
