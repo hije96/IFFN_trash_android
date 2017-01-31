@@ -19,4 +19,23 @@ public class MemberDataModel {
     private int flavor_4;
     private int idx;
 */
+/*
+MemberDataModel(String id,String pw, String name, int age, String email, String addr, int phone){
+    this.id = id;
+    this.pw = pw;
+    this.name = name;
+    this.age = age;
+    this.email = email;
+    this.addr = addr;
+    this.phone=phone;
+}
+*/
+    String id;
+    String pw;
+    String name;
+    int age;
+    String email;
+    String addr;
+    int phone;
+    int gender;
 }

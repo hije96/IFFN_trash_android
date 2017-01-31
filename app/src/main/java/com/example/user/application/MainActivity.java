@@ -3,7 +3,6 @@ package com.example.user.application;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -61,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+      //  Intent intent = new Intent(this, LoginActivity.class);
+      //  startActivity(intent);
 
         btn_flaovr_1.setOnClickListener(new View.OnClickListener() {
             @Override

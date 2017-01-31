@@ -17,7 +17,7 @@ public interface ApiService {
 
     public static final String API_URL = "http:172.20.10.11:3000/";
     //   @FormUrlEncoded
-    @POST("flavor_information")
+    @POST("mix")
     Call<ResponseJson> getComment(@Body DataModel dataModel);
 
  //   @POST("member information")

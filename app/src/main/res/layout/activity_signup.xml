@@ -44,16 +44,16 @@
         android:text="남"
         android:id="@+id/radioButton"
         android:layout_below="@+id/editText5"
-        android:layout_alignStart="@+id/editText5" />
+        android:layout_toEndOf="@+id/textView10"
+        android:layout_marginStart="25dp" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="여"
         android:id="@+id/radioButton2"
-        android:layout_alignBottom="@+id/radioButton"
-        android:layout_toEndOf="@+id/radioButton"
-        android:layout_marginStart="19dp" />
+        android:layout_below="@+id/editText5"
+        android:layout_alignStart="@+id/button10" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -96,9 +96,9 @@
         android:layout_height="wrap_content"
         android:text="cancel"
         android:id="@+id/button9"
+        android:layout_marginBottom="39dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/editText8"
-        android:layout_marginBottom="29dp" />
+        android:layout_toEndOf="@+id/textView10" />
 
     <Button
         android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
         android:text="save"
         android:id="@+id/button10"
         android:layout_alignTop="@+id/button9"
-        android:layout_alignEnd="@+id/editText8" />
+        android:layout_alignEnd="@+id/editText9" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -131,9 +131,9 @@
         android:layout_height="wrap_content"
         android:text="name"
         android:id="@+id/textView9"
-        android:layout_alignBottom="@+id/editText5"
-        android:layout_toStartOf="@+id/editText5"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
